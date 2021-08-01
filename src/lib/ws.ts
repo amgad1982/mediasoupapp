@@ -1,12 +1,20 @@
-import WebSocket from "ws"
+import WebSocket from "ws";
+import { createWorker } from "./worker";
 
+let mediasoupRouter;
 const WebsocketConnection = async (websocket: WebSocket.Server) => {
-    websocket.on('connection', (ws: WebSocket) => {
-        ws.on('message', (message: string) => {
-            console.log("Message: =>", message);
-            ws.send("Hello!");
-        })
-    })
-}
+  try {
+    mediasoupRouter = await createWorker();
+  } catch (error) {
+    throw error;
+  }
 
-export {WebsocketConnection}
+  websocket.on("connection", (ws: WebSocket) => {
+    ws.on("message", (message: string) => {
+      console.log("Message: =>", message);
+      ws.send("Hello!");
+    });
+  });
+};
+
+export { WebsocketConnection };
