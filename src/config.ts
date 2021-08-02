@@ -21,7 +21,7 @@ export const config = {
           kind: "audio",
           mimeType: "audio/opus",
           clockRate: 48000,
-          channels: 20,
+          channels: 2,
         },
         {
           kind: "video",
@@ -33,13 +33,15 @@ export const config = {
         },
       ] as RtpCodecCapability[],
     },
-    webRtctransport: {
+    webRtcTransport: {
       listenIps: [
         {
           ip: "0.0.0.0",
           announcedIp: "127.0.0.1", //change to public ip
         },
       ] as TransportListenIp[],
+      maxIncomeBitRate: 1500000,
+      initialAvailableOutgoingBitrate:1000000,
     },
   },
 } as const;

@@ -26,6 +26,9 @@ const createWorker = async () => {
       process.exit(1);
     }, 2000);
   });
+  const mediaCodecs = config.mediasoup.router.mediaCodecs;
+  const mediasoupRouter = await worker.createRouter({ mediaCodecs });
+  return mediasoupRouter;
 }
 
 export {createWorker}
